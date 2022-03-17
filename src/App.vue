@@ -1,31 +1,54 @@
 <template>
 <div id="app">
-    <h2>Iron Contacts</h2>
+  <h1>Iron Contacts</h1>
+  <div class="q-pa-md q-gutter-sm">
+    <q-btn color="black" @click="addContacts">Add Random Contact</q-btn>
+    <q-btn color="black" @click="sortByPopularity">Sort by Popularity</q-btn>
+    <q-btn color="black" @click="sortByName">Sort by name</q-btn>
+  </div>
 
-    <td>
+
+  <table>
+    <tr>
       <th>Picture</th>
       <th>Name</th>
       <th>Popularity</th>
-    </td>    
-    <table class="table" v-for="contact in myContacts">
-
-  <tr>
-    <td><img class="picture" :src="contact.pictureUrl" alt=""></td>
-    <td>{{ contact.name }}</td>
-    🏆
-    <td>{{ contact.popularity.toFixed(2) }}</td>
-  </tr>
-    </table>
+      <th>Won Oscar</th>
+      <th>Won Emmy</th>
+    </tr>        
+    <tr v-for="contact in myContacts.slice(0,5)" :key="contact.id">
+      <td><q-img  spinner-color="white" style="height: auto; width: 100px" class="picture shadow-15" :src="contact.pictureUrl" alt=""/></td>      
+      <td>{{ contact.name }}</td>    
+      <td>{{ contact.popularity.toFixed(2) }}</td>
+      <td v-if="contact.wonOscar">🏆</td>
+      <td v-else></td>
+      <td v-if="contact.wonEmmy">🏆</td>
+      <td v-else> </td>
+    </tr>    
+  </table>
   
-</div>
-  
+</div>  
 </template>
 
 <script setup>
+//IMPORTS
 import contacts from "./contacts.json";
 
+//VARS
 const myContacts = contacts;
-myContacts.splice(5);
+const isRepeated = false;
+// myContacts.splice(5);
+
+//FUNCTIONS
+function addContacts(){
+
+}
+function sortByName(){
+
+}
+function sortByPopularity(){
+
+}
 </script>
 
 <style>
@@ -36,10 +59,5 @@ myContacts.splice(5);
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-.table{
-border: 3px;}
-.picture{
-  width: 20%;
 }
 </style>
